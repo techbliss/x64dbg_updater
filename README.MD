@@ -7,9 +7,10 @@ add your own release repo api.
 
 
 
+
 ![splashxdbg](https://cloud.githubusercontent.com/assets/3592375/16281757/0cb6501a-38c6-11e6-8d52-954b3cfdcc82.png)
 
-[![x64dbg_updater](<iframe width="1280" height="720" src="https://www.youtube.com/embed/qB5lCMUEtgg" frameborder="0" allowfullscreen></iframe>/0.jpg)](<iframe width="1280" height="720" src="https://www.youtube.com/embed/qB5lCMUEtgg" frameborder="0" allowfullscreen></iframe>)
+[![x64dbg_updater](<iframe width="1280" height="720" src="https://www.youtube.com/embed/qB5lCMUEtgg" frameborder="0" allowfullscreen></iframe>)
 
 
 
