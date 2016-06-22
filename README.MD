@@ -11,8 +11,6 @@ add your own release repo api.
 ![splashxdbg](https://cloud.githubusercontent.com/assets/3592375/16281757/0cb6501a-38c6-11e6-8d52-954b3cfdcc82.png)
 
 
-[![x64dbg_updater](http://i.imgur.com/xgjhEzR.png)](https://www.youtube.com/embed/qB5lCMUEtgg)
-
 
 
 
