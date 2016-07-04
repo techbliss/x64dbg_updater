@@ -5,6 +5,15 @@ Only found Curl code that could do this!
 Only use 60 times per day or github will block your ip for 24 hours. :P
 add your own release repo api.
 
+**Dependicies**
+
+json
+webbrowser
+PyQt5 x64build
+X64dbgpy
+
+[https://github.com/x64dbg/x64dbgpy]()
+[https://github.com/x64dbg/PyQt5]()
 
 
 
