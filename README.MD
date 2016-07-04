@@ -16,7 +16,9 @@ X64dbgpy
 [https://github.com/x64dbg/PyQt5]()
 
 
+**Prebuild**
 
+[https://github.com/techbliss/x64dbg_updater/releases/tag/1.0]()
 
 
 ![splashxdbg](https://cloud.githubusercontent.com/assets/3592375/16281757/0cb6501a-38c6-11e6-8d52-954b3cfdcc82.png)
