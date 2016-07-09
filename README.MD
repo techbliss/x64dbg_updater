@@ -7,10 +7,15 @@ add your own release repo api.
 
 **Dependicies**
 
-json
+
+`json
+
 webbrowser
+
 PyQt5 x64build
-X64dbgpy
+
+X64dbgpy`
+
 
 [https://github.com/x64dbg/x64dbgpy]()
 [https://github.com/x64dbg/PyQt5]()
