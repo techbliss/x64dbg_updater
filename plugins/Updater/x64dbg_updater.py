@@ -59,7 +59,7 @@ def X64dbgSplash(self):
     time.sleep(3)
     zfile_size_dl = 0
     zf = open(zfile_name, 'wb')
-    zmeta = u.info()
+    zmeta = zu.info()
     zfile_size = int(zmeta.getheaders("Content-Length")[0])
     print "Downloading: %s Bytes: %s" % (zfile_name, zfile_size)
 
