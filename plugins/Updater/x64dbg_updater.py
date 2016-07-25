@@ -137,7 +137,7 @@ def X64dbgSplashpy(self):
         for line in search:
             line = line.rstrip()  # remove '\n' at end of line
             if "x64dbgpy-"+ branch+".zip" == line:
-                splash.showMessage("Jubii you  have the latest branch\nContinue to X64dbg latest branch",
+                splash.showMessage("Jubii you  have the latest X64dbgpy release\nContinue to X64dbg",
                                    QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom | QtCore.Qt.WindowStaysOnTopHint,
                                    QtCore.Qt.white)
                 time.sleep(3)
