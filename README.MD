@@ -9,7 +9,6 @@ Only use 60 times per day or github will block your ip for 24 hours. :P
 
 add your own release repo api.
 
-
 **Howto**
 
 Build with plugin template [https://github.com/techbliss/x64dbgpy-Plugin-Template]() 
