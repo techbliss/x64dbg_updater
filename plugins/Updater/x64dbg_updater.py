@@ -3,7 +3,7 @@ from PyQt5 import QtGui, QtCore
 from PyQt5.QtWidgets import QSplashScreen, QDesktopWidget
 from PyQt5.QtGui import QFont, QPixmap
 from PyQt5.QtWidgets import QMainWindow
-
+import re
 import os
 import sys
 import time
@@ -28,6 +28,7 @@ build_date = reg2
 file_name = reg2.split('/')[-1]
 u = urllib2.urlopen(reg2)
 
+
 #x64dbg
 zeq = urllib2.Request("https://api.github.com/repos/x64dbg/x64dbg/releases/latest")
 zopener = urllib2.build_opener()
@@ -45,6 +46,21 @@ zbuild_date = zreg2
 zfile_name = zreg2.split('/')[-1]
 zu = urllib2.urlopen(zreg2)
 
+try:
+    with open("x64dbgpy-branch.txt") as text_file:
+        pass
+except IOError:
+    with open("x64dbgpy-branch.txt", "w") as text_file:
+        text_file.write('')
+
+try:
+    with open("x64dbg-branch.txt") as text_file:
+        pass
+except IOError:
+    with open("x64dbg-branch.txt", "w") as text_file:
+        text_file.write('')
+
+
 def X64dbgSplash(self):
     ############################################
     splash2 = PyQt5.QtWidgets.QSplashScreen(QtGui.QPixmap("22.png"), QtCore.Qt.WindowStaysOnTopHint)
@@ -56,36 +72,50 @@ def X64dbgSplash(self):
                        QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom | QtCore.Qt.WindowStaysOnTopHint, QtCore.Qt.white)
 
     splash2.show()
-    time.sleep(3)
-    zfile_size_dl = 0
-    zf = open(zfile_name, 'wb')
-    zmeta = zu.info()
-    zfile_size = int(zmeta.getheaders("Content-Length")[0])
-    print "Downloading: %s Bytes: %s" % (zfile_name, zfile_size)
+    time.sleep(2)
 
-    zfile_size_dl = 0
-    zblock_sz = 8192
-    while True:
-        zbuffer = zu.read(zblock_sz)
-        if not zbuffer:
-            break
+    with open("x64dbg-branch.txt", 'r') as search:
+        for line in search:
+            line = line.rstrip()  # remove '\n' at end of line
+            if zbranch == line:
+                splash2.showMessage("Jubii you  have the latest X64dbg\nExiting",
+                                   QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom | QtCore.Qt.WindowStaysOnTopHint,
+                                   QtCore.Qt.white)
+                time.sleep(3)
+                break
 
-        zfile_size_dl += len(zbuffer)
-        zf.write(zbuffer)
-        zstatus = r"%10d [%3.2f%%]" % (zfile_size_dl, zfile_size_dl * 100. / zfile_size)
-        zstatus = zstatus + chr(8) * (len(zstatus) + 1)
-        zfont = splash2.font()
-        zfont.setPixelSize(16)
-        zfont.setWeight(QFont.Bold)
-        splash2.setFont(font2)
+        else:
+            with open("x64dbg-branch.txt", "w") as text_file:
+                text_file.write(zbranch)
+            zfile_size_dl = 0
+            zf = open(zfile_name, 'wb')
+            zmeta = zu.info()
+            zfile_size = int(zmeta.getheaders("Content-Length")[0])
+            print "Downloading: %s Bytes: %s" % (zfile_name, zfile_size)
 
-        splash2.showMessage("Downloading\n" + zreg2 + "\n" + zstatus,
-                           QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom | QtCore.Qt.WindowStaysOnTopHint,
-                           QtCore.Qt.white)
-        splash2.show()
+            zfile_size_dl = 0
+            zblock_sz = 8192
+            while True:
+                zbuffer = zu.read(zblock_sz)
+                if not zbuffer:
+                    break
 
-    PyQt5.QtWidgets.QApplication.processEvents()
-    splash2.show()
+                zfile_size_dl += len(zbuffer)
+                zf.write(zbuffer)
+                zstatus = r"%10d [%3.2f%%]" % (zfile_size_dl, zfile_size_dl * 100. / zfile_size)
+                zstatus = zstatus + chr(8) * (len(zstatus) + 1)
+                zfont = splash2.font()
+                zfont.setPixelSize(16)
+                zfont.setWeight(QFont.Bold)
+                splash2.setFont(font2)
+
+                splash2.showMessage("Downloading\n" + zreg2 + "\n" + zstatus,
+                        QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom | QtCore.Qt.WindowStaysOnTopHint,
+                        QtCore.Qt.white)
+                splash2.show()
+
+            PyQt5.QtWidgets.QApplication.processEvents()
+            splash2.show()
     new_build_folder = os.getcwd()
     os.system("explorer " + new_build_folder)
     print dn
@@ -99,38 +129,52 @@ def X64dbgSplashpy(self):
     font.setPixelSize(16)
     font.setWeight(QFont.Bold)
     splash.setFont(font)
-
     splash.showMessage("Fetching\nLatest X64dbg python Build", QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom | QtCore.Qt.WindowStaysOnTopHint, QtCore.Qt.white)
-
     splash.show()
-    time.sleep(3)
-    file_size_dl = 0
-    f = open(file_name, 'wb')
-    meta = u.info()
-    file_size = int(meta.getheaders("Content-Length")[0])
-    print "Downloading: %s Bytes: %s" % (file_name, file_size)
+    time.sleep(2)
 
-    file_size_dl = 0
-    block_sz = 8192
-    while True:
-        buffer = u.read(block_sz)
-        if not buffer:
-             break
+    with open("x64dbgpy-branch.txt", 'r') as search:
+        for line in search:
+            line = line.rstrip()  # remove '\n' at end of line
+            if "x64dbgpy-"+ branch+".zip" == line:
+                splash.showMessage("Jubii you  have the latest branch\nContinue to X64dbg latest branch",
+                                   QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom | QtCore.Qt.WindowStaysOnTopHint,
+                                   QtCore.Qt.white)
+                time.sleep(3)
+                break
 
-        file_size_dl += len(buffer)
-        f.write(buffer)
-        status = r"%10d [%3.2f%%]" % (file_size_dl, file_size_dl * 100. / file_size)
-        status = status + chr(8) * (len(status) + 1)
-        font = splash.font()
-        font.setPixelSize(16)
-        font.setWeight(QFont.Bold)
-        splash.setFont(font)
 
-        splash.showMessage("Downloading\n" + reg2+"\n"+status, QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom | QtCore.Qt.WindowStaysOnTopHint, QtCore.Qt.white)
-        splash.show()
+        else:
+            with open("x64dbgpy-branch.txt", "w") as text_file:
+                text_file.write("x64dbgpy-" + branch + ".zip")
 
-    PyQt5.QtWidgets.QApplication.processEvents()
-    splash.show()
+            file_size_dl = 0
+            f = open(file_name, 'wb')
+            meta = u.info()
+            file_size = int(meta.getheaders("Content-Length")[0])
+            print "Downloading: %s Bytes: %s" % (file_name, file_size)
+
+            file_size_dl = 0
+            block_sz = 8192
+            while True:
+                buffer = u.read(block_sz)
+                if not buffer:
+                    break
+
+                file_size_dl += len(buffer)
+                f.write(buffer)
+                status = r"%10d [%3.2f%%]" % (file_size_dl, file_size_dl * 100. / file_size)
+                status = status + chr(8) * (len(status) + 1)
+                font = splash.font()
+                font.setPixelSize(16)
+                font.setWeight(QFont.Bold)
+                splash.setFont(font)
+
+                splash.showMessage("Downloading\n" + reg2+"\n"+status, QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom | QtCore.Qt.WindowStaysOnTopHint, QtCore.Qt.white)
+                splash.show()
+
+            PyQt5.QtWidgets.QApplication.processEvents()
+            splash.show()
 
 
 
@@ -152,6 +196,7 @@ if __name__ == '__main__':
     X64dbgSplash(sys.argv)
 
     app.exec_()
+
 
 
 
